@@ -58,29 +58,100 @@ public class MainActivity extends AppCompatActivity {
     public void questions(){
         // creating 2 random digits for problem the numbers will be from 0 to 21
         Random randnumber = new Random();
-
         int a = randnumber.nextInt(21);
         int b = randnumber.nextInt(21);
-        sumTextView.setText(Integer.toString(a)+ " + " +Integer.toString(b) );
 
-        // this random number will decide the right answer button upto 4
-        rightAnswerButton = randnumber.nextInt(4);
+        int type = randnumber.nextInt(4);
 
-        // after each time we choose answer we want to clear the answers from the array for the new answers
-        answers.clear();
+        if(type == 0) {
 
-        // this loop is to add answers in th arrayList
-        for (int i=0;i<4;i++){
-            if (i == rightAnswerButton){
-                answers.add(a+b);
-            }else {
-                // this while loop is to verify that there are no two correct answer
-                int wrongAnswer =randnumber.nextInt(41);
+            sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
+            // this random number will decide the right answer button upto 4
+            rightAnswerButton = randnumber.nextInt(4);
 
-                while(wrongAnswer == (a+b) ){
-                    wrongAnswer =randnumber.nextInt(41);
+            // after each time we choose answer we want to clear the answers from the array for the new answers
+            answers.clear();
+
+            // this loop is to add answers in th arrayList
+            for (int i = 0; i < 4; i++) {
+                if (i == rightAnswerButton) {
+                    answers.add(a + b);
+                } else {
+                    // this while loop is to verify that there are no two correct answer
+                    int wrongAnswer = randnumber.nextInt(41);
+
+                    while (wrongAnswer == (a + b)) {
+                        wrongAnswer = randnumber.nextInt(41);
+                    }
+                    answers.add(wrongAnswer);
                 }
-                answers.add(wrongAnswer);
+            }
+        }else if(type == 1){
+
+            sumTextView.setText(Integer.toString(a)+ " - " +Integer.toString(b) );
+            // this random number will decide the right answer button up to 4
+            rightAnswerButton = randnumber.nextInt(4);
+
+            // after each time we choose answer we want to clear the answers from the array for the new answers
+            answers.clear();
+
+            // this loop is to add answers in th arrayList
+            for (int i=0;i<4;i++){
+                if (i == rightAnswerButton){
+                    answers.add(a-b);
+                }else {
+                    // this while loop is to verify that there are no two correct answer
+                    int wrongAnswer =randnumber.nextInt(41);
+
+                    while(wrongAnswer == (a-b) ){
+                        wrongAnswer =randnumber.nextInt(41);
+                    }
+                    answers.add(wrongAnswer);
+                }
+            }
+        }else if(type == 2){
+            sumTextView.setText(Integer.toString(a)+ " * " +Integer.toString(b) );
+            // this random number will decide the right answer button upto 4
+            rightAnswerButton = randnumber.nextInt(4);
+
+            // after each time we choose answer we want to clear the answers from the array for the new answers
+            answers.clear();
+
+            // this loop is to add answers in th arrayList
+            for (int i=0;i<4;i++){
+                if (i == rightAnswerButton){
+                    answers.add(a*b);
+                }else {
+                    // this while loop is to verify that there are no two correct answer
+                    int wrongAnswer =randnumber.nextInt(400);
+
+                    while(wrongAnswer == (a*b) ){
+                        wrongAnswer =randnumber.nextInt(400);
+                    }
+                    answers.add(wrongAnswer);
+                }
+            }
+        }else{
+            sumTextView.setText(Integer.toString(a)+ " / " +Integer.toString(b) );
+            // this random number will decide the right answer button upto 4
+            rightAnswerButton = randnumber.nextInt(4);
+
+            // after each time we choose answer we want to clear the answers from the array for the new answers
+            answers.clear();
+
+            // this loop is to add answers in th arrayList
+            for (int i=0;i<4;i++){
+                if (i == rightAnswerButton){
+                    answers.add(a/b);
+                }else {
+                    // this while loop is to verify that there are no two correct answer
+                    int wrongAnswer =randnumber.nextInt(41);
+
+                    while(wrongAnswer == (a/b) ){
+                        wrongAnswer =randnumber.nextInt(41);
+                    }
+                    answers.add(wrongAnswer);
+                }
             }
         }
 
@@ -113,6 +184,10 @@ public class MainActivity extends AppCompatActivity {
         timerTextView.setText("30s");
         scoreTextView.setText(Integer.toString(score) + "/" + Integer.toString(numOfQuestions));
         questions();
+        button0.setEnabled(true);
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
 
         playAgainButton.setVisibility(View.INVISIBLE);
         resultTextView.setText(" ");
